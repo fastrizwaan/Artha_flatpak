@@ -5,6 +5,9 @@ Artha starts crasing in Fedora 33, so I made this flatpak.
 first time I've made a GTK2 application in flatpak manifest. 
 Adwaita gtk2 theme is also included in the flatpak using gnome-themes-extra package.
 
+In gnome-shell use tray icon extension to see legacy system tray icons.
+https://extensions.gnome.org/extension/1503/tray-icons/
+
 #### install flathub repo and gnome sdk 3.38
 ```
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
