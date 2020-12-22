@@ -1,5 +1,7 @@
 # Artha_flatpak
-Scintilla based Artha Text Editor: Scite GTK flatpak 
+Artha is a wordnet based excellent dictionary, based on Gtk 2 and wordnet 3.0.
+Artha starts crasing in Fedora 33, so I made this flatpak.
+first time I've made a GTK2 application in flatpak manifest. Adwaita gtk2 theme is also included in teh flatpak using gnome-themes-extra package.
 
 #### install flathub repo and gnome sdk 3.38
 ```
