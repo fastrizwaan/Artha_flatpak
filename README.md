@@ -1,7 +1,9 @@
 # Artha_flatpak
+http://artha.sourceforge.net/wiki/index.php/Home 
 Artha is a wordnet based excellent dictionary, based on Gtk 2 and wordnet 3.0.
 Artha starts crasing in Fedora 33, so I made this flatpak.
-first time I've made a GTK2 application in flatpak manifest. Adwaita gtk2 theme is also included in teh flatpak using gnome-themes-extra package.
+first time I've made a GTK2 application in flatpak manifest. 
+Adwaita gtk2 theme is also included in the flatpak using gnome-themes-extra package.
 
 #### install flathub repo and gnome sdk 3.38
 ```
