@@ -1,0 +1,92 @@
+app-id: net.sourceforge.Artha
+runtime: org.freedesktop.Platform
+runtime-version: '18.08'
+sdk: org.freedesktop.Sdk
+command: artha
+
+finish-args:
+  - --socket=wayland
+  - --socket=x11
+  - --share=ipc
+  - --share=network
+  - --device=dri
+  - --filesystem=host
+  - --socket=session-bus
+  
+modules:
+
+- name: gtk-2.24
+  sources:
+  - type: archive
+    url: https://download.gnome.org/sources/gtk+/2.24/gtk+-2.24.32.tar.xz
+    sha256: b6c8a93ddda5eabe3bfee1eb39636c9a03d2a56c7b62828b359bf197943c582e
+  build-options:
+    no-debuginfo: true
+    
+# Wordnet 3.0 Needs tcl 8.5.x 
+- name: tcl8.5.19
+  sources:
+  - type: archive
+    url: ftp://ftp.tcl.tk/pub/tcl/tcl8_5/tcl8.5.19-src.tar.gz
+    sha256: d3f04456da873d17f02efc30734b0300fb6c3b85028d445fe284b83253a6db18
+  subdir: unix
+  build-options:
+    no-debuginfo: true
+  post-install:
+  - make install-private-headers 
+  - ln -v -sf tclsh8.6 ${FLATPAK_DEST}/bin/tclsh 
+  - chmod -v 755 ${FLATPAK_DEST}/lib/libtcl8.5.so
+
+# Wordnet 3.0 Needs tk 8.5.x
+- name: tk8.5.19
+  sources:
+  - type: archive
+    url: ftp://ftp.tcl.tk/pub/tcl/tcl8_5/tk8.5.19-src.tar.gz
+    sha256: 407af1de167477d598bd6166d84459a3bdccc2fb349360706154e646a9620ffa
+  subdir: unix
+  post-install:
+  - make install-private-headers 
+  - ln -v -sf wish8.6 ${FLATPAK_DEST}/bin/wish 
+  - chmod -v 755 ${FLATPAK_DEST}/lib/libtk8.5.so
+
+- name: wordnet
+  buildsystem: autotools
+  config-opts:
+  - --with-tcl=/app/lib
+  - --with-tk=/app/lib
+  - --enable-static=no 
+  sources:
+  - type: archive
+    url: http://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.bz2
+    sha256: 6c492d0c7b4a40e7674d088191d3aa11f373bb1da60762e098b8ee2dda96ef22
+    patch: 
+    
+- name: dbus-glib-0.110
+  buildsystem: autotools
+  sources:
+  - type: archive
+    url: https://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-0.110.tar.gz
+    sha256: 7ce4760cf66c69148f6bd6c92feaabb8812dee30846b24cd0f7395c436d7e825
+
+
+- name: gnome-themes-extra
+  buildsystem: autotools
+  sources:
+  - type: archive
+    url:  http://download.gnome.org/sources/gnome-themes-extra/3.28/gnome-themes-extra-3.28.tar.xz
+    sha256: 7c4ba0bff001f06d8983cfc105adaac42df1d1267a2591798a780bac557a5819
+ 
+- name: artha
+  buildsystem: autotools
+  sources:
+  - type: archive
+    url: https://sourceforge.net/projects/artha/files/artha/1.0.5/artha-1.0.5.tar.bz2
+    sha256: 5a0d568a5d5335f98b3a04180ec28de6ce280aa68d21036601e7f832dd3e990c
+  post-install:
+  - cp ${FLATPAK_DEST}/share/applications/artha.desktop
+    ${FLATPAK_DEST}/share/applications/net.sourceforge.Artha.desktop
+  - sed 's/Icon=artha/Icon=net.sourceforge.Artha/g' -i 
+    ${FLATPAK_DEST}/share/applications/net.sourceforge.Artha.desktop
+  - mkdir -p ${FLATPAK_DEST}/share/icons/hicolor/48x48/apps/
+  - cp ${FLATPAK_DEST}/share/pixmaps/artha.png 
+    ${FLATPAK_DEST}/share/icons/hicolor/48x48/apps/net.sourceforge.Artha.png
