@@ -8,11 +8,10 @@ Adwaita gtk2 theme is also included in the flatpak using gnome-themes-extra pack
 In gnome-shell use tray icon extension to see legacy system tray icons.
 https://extensions.gnome.org/extension/1503/tray-icons/
 
-#### install flathub repo and gnome sdk 3.38
+#### install flathub repo and freedesktop sdk 18.08
 ```
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub org.gnome.Sdk/x86_64/3.38
-
+flatpak install flathub org.freedesktop.Sdk/x86_64/18.08
 ```
 
 #### clone and build flatpak from yaml
@@ -33,7 +32,7 @@ flatpak run net.sourceforge.Artha
 #### Build a flatpak bundle file from the above built repo:
 ```
 flatpak-builder --repo="repo" --force-clean "build" net.sourceforge.Artha.yaml
-flatpak --user remote-add --no-gpg-verify "scite" "repo"
+flatpak --user remote-add --no-gpg-verify "artha" "repo"
 flatpak build-bundle "repo" "Artha.flatpak" net.sourceforge.Artha  --runtime-repo="https://flathub.org/repo/flathub.flatpakrepo"
 
 flatpak --user install Artha.flatpak
