@@ -10,7 +10,7 @@ finish-args:
   - --share=ipc
 # - --share=network
   - --device=dri
-  - --filesystem=host:ro
+# - --filesystem=host
   - --socket=session-bus
   
 modules:
