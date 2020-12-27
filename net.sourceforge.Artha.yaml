@@ -8,7 +8,8 @@ finish-args:
   - --socket=x11
   - --share=ipc
   - --device=dri
-  - --socket=session-bus
+  # dbus session bus for artha
+  - --own-name=org.artha.unique
   
 modules:
 
