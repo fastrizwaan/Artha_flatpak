@@ -5,8 +5,8 @@ sdk: org.freedesktop.Sdk
 command: artha
 
 finish-args:
-  - --socket=x11
-  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
   - --device=dri
   # dbus session bus for artha
   - --own-name=org.artha.unique
