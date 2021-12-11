@@ -1,3 +1,5 @@
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/fastrizwaan)
+
 # Artha_flatpak
 http://artha.sourceforge.net/wiki/index.php/Home 
 Artha is a wordnet based excellent dictionary, based on Gtk 2 and wordnet 3.0.
